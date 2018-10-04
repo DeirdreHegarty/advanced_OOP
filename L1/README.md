@@ -32,7 +32,7 @@ javac -d ../bin *.java
 ```
 
 #### Creating instance of a class
-
+*INDIRECTION*  
 **BAD PRACTICE:** Accessing the attributes of an object directly through client code (code that directly access class attributes) is bad practice `e.g. System.out.println(p.name);`  
 **BETTER PRACTICE:** use methods to indirectly access attrs e.g. `getName()` which will be defined in `class Person`
 
@@ -121,6 +121,14 @@ Now instead of the object identifier `Person@43556938`, `Rob` is printed.
 		System.out.println( s4 == s5 );        // both reference the same obj = therfore true
 
 ```
+**ABSTRACT CLASS:** An abstract class, in the context of Java, is a superclass that cannot be instantiated and is used to state or define general characteristics. An object cannot be formed from a Java abstract class; trying to instantiate an abstract class only produces a compiler error.  
 
+i.e. only instance of a subclass of an abstract class can be instantiated.  
+```java
 
+Pet pet = new Pet(); // NO
+
+Pet pet = new Dog(); // YES - VALID
+
+```
 
