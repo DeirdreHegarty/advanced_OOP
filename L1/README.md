@@ -7,6 +7,9 @@ javac -d <destination> <file.java>
 # example
 javac -d ../bin *.java
 
+# compile and run
+javac -d ../bin *.java && java -cp ../bin <file>
+
 ```
 #### Accessing an object
 `Person@43556938` in an example of an **OBJECT IDENTIFIER**. Some people call this the "memory address", but java doesn't give access to actual memory. Java allows for a mapping to a physical address.
