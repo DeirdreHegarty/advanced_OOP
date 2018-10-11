@@ -1,3 +1,0 @@
-You have just seen the == operator being used on two object references to test if
-two references refer to the same Object.
-Go back to the PersonWithToString example, and apply the same test.
