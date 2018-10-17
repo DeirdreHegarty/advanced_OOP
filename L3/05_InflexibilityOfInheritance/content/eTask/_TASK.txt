@@ -1,0 +1,18 @@
+Write the code as suggested in the comments of this folder.
+
+Is there any problem with the suggestion to 
+avoid inheritance and use interfaces instead?
+
+
+
+Imagine a month passes and the Simulation Duck Software is working fine.
+The customer asks for a change to the fly() method 
+	- add a println("wheesh"); to show the flying sound-effect to Ducks.
+	
+	Try to do this - what does it involve?
+
+
+TASK Part:
+(Study pages 9 - 14 of the Head-First Design Patterns)
+
+

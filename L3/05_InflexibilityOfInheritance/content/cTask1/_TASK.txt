@@ -1,0 +1,21 @@
+The code in the Runner.java has been altered to help
+answer this task.
+ - See the print statements added to the 
+		demonstrateDuck(:Duck[])
+ - Run the code.
+ - Add the 'DecoyDuck' class and see the problem gets worse
+
+
+TASKQuestion:
+What is wrong with the approach to override methods to 
+do nothing?
+
+Marks will be awarded for:
+a) Briefly explaining a negative consequence of this approach.
+
+* client programmer expectation not fulfilled
+* interface
+* code that wont run the way expected to run if method is accessible
+
+b) Having used the terms 'client programmer' and 'interface'
+	appropriately in the explanation

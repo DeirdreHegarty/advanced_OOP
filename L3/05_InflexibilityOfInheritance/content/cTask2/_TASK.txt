@@ -1,0 +1,34 @@
+In this example, another approach is attempted, again trying
+to solve the problem using inheritance.
+
+The design has been altered to include a 'FlyingDuck' as a 
+subclass of 'Duck' to contain the fly() method. The intent 
+is that a programmer can subclass 'Duck' if they want 
+a duck that quack()'s and swim()'s only - but can subclass 
+'FlyingDuck' if they want a duck to fly() as well.
+
+A problem occurs however when we need to incorporate a 
+'DecoyDuck' class into this design. The DecoyDuck is
+a non-quacking, non-flying duck. Where does it belong?
+How can you solve this using inheritance?
+
+
+TASKQuestion:
+What is wrong with the approach to introduce  classifiers 
+(i.e. 'FlyingDuck', NonFlyingDuck' etc.) into the type
+hierarchy of the ducks problem?
+
+Marks will be awarded for:
+a) Briefly explaining a negative consequence of this approach.
+
+* it introduces another level of abstraction
+* a subclass cannot extend multiple abstract classes
+* there will be a lot of extending super classes, and super classes of super classes
+* If there are n attributes in the type system, there are 2n possible combinations that you might have to support (**class explosion/combinatorial explosion**)
+* could have abjects that satisfy only parts of their parent class
+
+
+b) Having used the terms 'repeating code', 'class explosion' and 
+	referring to the "DRY" synonym appropriately in the explanation.
+**DRY** "Don't repeat yourself!" == "Don't write the same code repeatedly"  
+
