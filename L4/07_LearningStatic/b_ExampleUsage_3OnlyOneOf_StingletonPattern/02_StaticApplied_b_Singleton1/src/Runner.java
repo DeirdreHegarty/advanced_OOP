@@ -3,7 +3,8 @@ class Runner
 {
 	public static void main(String[] args)
 	{
-		//PokerDealer dealer = new PokerDealer(); //won't compile? why not?
+		//PokerDealer dealer = new PokerDealer(); // WON'T COMPILE
+		
 		System.out.println("Call instance() first time");
 		PokerDealer dealer1 = PokerDealer.instance();
 		System.out.println("PokerDealer.numObjects = "+PokerDealer.numObjects+", dealer:"+dealer1);
