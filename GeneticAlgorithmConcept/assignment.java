@@ -96,6 +96,8 @@ class Couple implements Crossover{
 		offspring[0] = new Individual(a1+b2);
 		offspring[1] = new Individual(b1+a2);
 
+		System.out.println("Offspring 1 : "+offspring[0].getName());
+		System.out.println("Offspring 2 : "+offspring[1].getName());
 		return offspring;
 	}
 }
@@ -161,5 +163,14 @@ class Runner{
 		Population p = new Population(i);
 		p.setSelection(new TheBiggest());
 		p.select();
+
+		Chrome_Factory cf = new IndividualGetter();
+		Chromosome product1 = cf.getChrome("1101100100110110");
+		Chromosome product2 = cf.getChrome("1101111000011110");
+		System.out.println(product1.getName());
+
+		CoupleFactory cpl = new CoupleGetter();
+		Couple c = cpl.getCoupleSubclass(product1, product2);
+		c.crossover();
 	}
 }
