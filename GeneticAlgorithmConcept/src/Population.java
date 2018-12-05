@@ -4,7 +4,7 @@ class Population{
 	public Population(Chromosome [] inArr){
 		this.pop = inArr;
 	}
-	public void select(){
+	public Chromosome [] select(){
 		selectBehaviour.selection(pop);
 	}
 	void setSelection(Selection s){
