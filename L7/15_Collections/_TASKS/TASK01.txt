@@ -1,0 +1,7 @@
+01: Include each of the TASKS for the 01_ArrayListToBeginWith folder
+02: Create a short example code for each of the following Collection types and display their core methods:
+	Create files for:
+	*Set  "MySetExample.java" - compare HashSet to TreeSet output (fill-order)
+	*Map  "MyMapExample.java" - compare HashMap to TreeMap output (fill-order)
+	*Other "MyOtherExample.java" - Choose any other Java collection that you find interesting (use comments)
+	//Recommended to use the Bruce Eckel code provided as a starting point.

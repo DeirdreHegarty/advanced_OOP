@@ -1,0 +1,3 @@
+http://www.javaworld.com/article/2077444/learn-java/speaking-on-the-observer-pattern.html
+
+http://www.vogella.com/tutorials/DesignPatternObserver/article.html

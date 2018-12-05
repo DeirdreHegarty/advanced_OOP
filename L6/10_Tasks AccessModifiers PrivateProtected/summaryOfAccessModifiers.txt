@@ -1,0 +1,23 @@
+//public
+//  any class any where can use me
+//  provided they can access my class
+//  (i.e. in the case where you have
+//   a package-access class, with a 
+//   public member - the public member
+//   is only accessible by classes 
+//   in the same package)
+
+//private
+//  only the writer of the current
+//  class can use me
+
+//
+//(default) not-specified
+//  any class in the same package can
+//  use me
+
+// protected
+//   you can access me through 
+//   inheritance, 
+//   OR
+//   if you're in the same package

@@ -1,0 +1,21 @@
+http://stackoverflow.com/questions/48442/rule-of-thumb-for-choosing-an-implementation-of-a-java-collection
+
+//above refers to image from this source:
+http://www.sergiy.ca/guide-to-selecting-appropriate-map-collection-in-java/
+
+//Some comments:
+Suggestions (what do you think?) :
+
+1) From path: ---values---><contains duplicates?>---no---><primary-task searching>---no---> ...
+
+   you could add:
+
+                            ...<high-frequency of insert/delete>---yes--->[LinkedList]
+
+                             (Where: ---no---> would lead back to [ArrayList]
+
+2) From path: ---pairs---><order important>---yes---><insertion order or sorted?>---...
+
+   you could change the labels to ---insertion-order---> && ---sorted-order--->
+
+*Similarly for  the Sets. 

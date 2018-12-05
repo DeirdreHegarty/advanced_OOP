@@ -1,0 +1,3 @@
+
+//Thanks to Bruce Eckel's book, Thinking in Java 4th Ed, for reference to this great source on Java Generics
+http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html#SECTION1

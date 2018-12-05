@@ -1,0 +1,22 @@
+Study the examples of a State design pattern in the
+code folders.
+
+1. Briefly explain why the first is "not working"
+
+2. Compare the 02...String against the 03...Enum examples
+and comment on which you think is the best approach and why
+(use the term 'type-safe' in your response)
+
+3. Briefly compare and contrast the State design pattern
+against the Strategy design pattern. Use code and/or UML
+diagrams to expalin the difference between the two patterns.
+
+Recommended Reading:
+Freeman, E., Freeman, E., Sierra, K., Bates, B., 2004. 
+Chapter 10: The State Pattern In Head first design patterns.
+O’Reilly, Sebastopol [etc.].
+
+Gamma, E., Helm, R., Johnson, R., Vlissides, J., 1994. 
+Chapter 5: Behavioral Patterns: State IN 
+Design patterns?: elements of reusable object-oriented software,
+ 1 edition. ed. Addison Wesley, Reading, Mass.

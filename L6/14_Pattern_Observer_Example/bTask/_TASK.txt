@@ -1,0 +1,9 @@
+The code in this folder works.
+
+However, it only works for the CurrentConditionsDisplay.
+
+Included in the folder are the classes StatisticsDisplay and ForecastDisplay (in corresponding .java files).
+Make changes to the code to make the output show each of these displays.
+
+You may need to study pages 37 - 63 of the HeadFirst Design Pattern book for help.
+

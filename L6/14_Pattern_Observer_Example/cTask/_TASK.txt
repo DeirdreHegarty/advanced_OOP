@@ -1,0 +1,5 @@
+The code in this folder _nearly_ works.
+
+Study pages 37 - 63 of the HeadFirst Design Pattern book, and make the code changes 
+necessary to get the code to compile and run.
+
