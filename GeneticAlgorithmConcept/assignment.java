@@ -12,6 +12,9 @@ interface Selection{
 	public Chromosome [] selection(Chromosome [] chromesin);
 }
 abstract class Chromosome{
+	// pass a factory
+	MutantIngredientFactory mfactory;
+
 	// instance variables
 	Crossover crossoverBehaviour;
 	Mutate mutateBehaviour;
@@ -45,13 +48,14 @@ abstract class Chromosome{
 	}
 }
 class Individual extends Chromosome{
+	MutantIngredientFactory mfactory;
 
-	public Individual(String aName){
+	public Individual(String aName, MutantIngredientFactory cfactory){
 		super(aName);
-
+		this.mfactory = cfactory;
 		System.out.println("New Individual");
 
-		mutateBehaviour = new IsMutant(); 		// mutateBehaviour is inherited (default value)
+		mutateBehaviour = new NotMutant(); 		// mutateBehaviour is inherited (default value)
 
 	}
 }
@@ -93,8 +97,11 @@ class Couple implements Crossover{
 		String b2 = parentB.getName().substring(5, parentB.getName().length());
 		
 		Chromosome offspring [] = new Chromosome [2];
-		offspring[0] = new Individual(a1+b2);
-		offspring[1] = new Individual(b1+a2);
+
+		MutantStore ms = new IndividualStore();
+
+		offspring[0] = ms.createChrome(a1+b2);
+		offspring[1] = ms.createChrome(b1+a2);
 
 		System.out.println("Offspring 1 : "+offspring[0].getName());
 		System.out.println("Offspring 2 : "+offspring[1].getName());
@@ -149,28 +156,31 @@ class TheBiggest extends Fitness{
 }
 class Runner{
 	public static void main(String [] args){
-		Chromosome chromosome1 = new Individual("1101100100110110");
-		Chromosome chromosome2 = new Individual("1101111000011110");
-		chromosome1.setMutation(new IsMutant());
-		// System.out.println(chromosome1.getName());
-		chromosome1.mutate();
-		// System.out.println(chromosome1.getName());
 
-		Couple c1 = new Couple(chromosome1, chromosome2);
+		MutantStore ms = new IndividualStore();
+		Chromosome chromosome1 = ms.createChrome("1111111111111111");
+		Chromosome chromosome2 = ms.createChrome("1111111111111111");
+		Chromosome chromosome3 = ms.createChrome("1101100100110110");
+		Chromosome chromosome4 = ms.createChrome("1101111000011110");
+		System.out.println("**************\n");
+
+		System.out.println("chromosome1 : "+chromosome1.getName());
+		// System.out.println(chromosome4.getName());
+		chromosome1.mutate();
+		System.out.println("chromosome1 mutated : "+chromosome1.getName());
+		System.out.println("**************\n");
+
+
+		Couple c1 = new Couple(chromosome3, chromosome4);
 		c1.crossover();
+		System.out.println("**************\n");
+
 
 		Chromosome [] i = {chromosome1, chromosome2};
 		Population p = new Population(i);
 		p.setSelection(new TheBiggest());
 		p.select();
+		System.out.println("**************\n");
 
-		Chrome_Factory cf = new IndividualGetter();
-		Chromosome product1 = cf.getChrome("1101100100110110");
-		Chromosome product2 = cf.getChrome("1101111000011110");
-		System.out.println(product1.getName());
-
-		CoupleFactory cpl = new CoupleGetter();
-		Couple c = cpl.getCoupleSubclass(product1, product2);
-		c.crossover();
 	}
 }
