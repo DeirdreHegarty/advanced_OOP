@@ -7,7 +7,6 @@ public interface Mutate{
 	 * This forces anything that implements Mutate
 	 * to have a mutate behaviour.
 	 * @param c strategy.Chromosome is part of a strategy pattern.
-	 * @return Nothing.
 	 */
 	public void mutation(Chromosome c);
 }
