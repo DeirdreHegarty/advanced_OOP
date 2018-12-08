@@ -11,7 +11,6 @@ public class IsMutant implements Mutate{
 	 * @see behaviours.Mutate#mutation(strategy.Chromosome)
 	 */
 	public void mutation(Chromosome c){
-
 		Random rand = new Random();
 		int n = rand.nextInt(15) + 0;
 

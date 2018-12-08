@@ -18,7 +18,7 @@ public class RandomGAFactory implements GA{
 	}
 	public static RandomGAFactory createRGF() 
 	{ 
-		// System.out.println("LAZY INITIALIZATION WITH DOUBLE CHECK LOCKING");
+		System.out.println("LAZY INITIALIZATION WITH DOUBLE CHECK LOCKING");
 	    if (_real == null)  
 	    { 
 	      //synchronized block to remove overhead 

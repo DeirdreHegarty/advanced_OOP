@@ -9,6 +9,6 @@ public class NotMutant implements Mutate{
 	 * @see behaviours.Mutate#mutation(strategy.Chromosome)
 	 */
 	public void mutation(Chromosome c){
-		System.out.println("I am NOT mutated");
+		System.out.println("I am NOT a mutant");
 	}
 }

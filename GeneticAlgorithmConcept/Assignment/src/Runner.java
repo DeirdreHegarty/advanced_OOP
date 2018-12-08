@@ -25,9 +25,12 @@ class Runner{
 		System.out.println("******************* Abstract Factory *****************************");
 		// Abstract factory
 		BigGAFactory bigFactory = new BigGAFactory();
-		Mutate m = bigFactory.createMutatorGA(checkMutant.ISMUTANT);
+		Mutate m = bigFactory.createMutatorGA(checkMutant.NOTMUTANT);
 		Chromosome bigFChrome = new Individual("1101100100110110");
 		System.out.println(bigFChrome.getName());
+		bigFChrome.setMutation(m);
+		bigFChrome.mutate();
+		m = bigFactory.createMutatorGA(checkMutant.ISMUTANT);
 		bigFChrome.setMutation(m);
 		bigFChrome.mutate();
 		System.out.println(bigFChrome.getName());
@@ -36,7 +39,11 @@ class Runner{
 		Population pop = new Population(i);
 		Selection s = bigFactory.createSelectGA(checkFitness.BIGGEST);
 		pop.setSelection(s);
-		pop.select();
+		Chromosome [] selected = pop.select();
+		for (int j = 0; j<2; j++){
+			System.out.println("POPULATION SELECTED ["+j+"]"+selected[j].getName());
+		}
+
 
 		Couple c1 = new Couple(chromosome1, chromosome2);
 		c1.crossover();
@@ -46,10 +53,12 @@ class Runner{
 		RandomGAFactory randomFactorySingleton = RandomGAFactory.createRGF();
 		// RandomGAFactory g2 = RandomGAFactory.createRGF();
 		// RandomGAFactory g3 = RandomGAFactory.createRGF();
-		Mutate m1 = randomFactorySingleton.createMutatorGA(checkMutant.NOTMUTANT);
+		Mutate m1 = randomFactorySingleton.createMutatorGA(checkMutant.ISMUTANT);
 		Chromosome randFChrome = new Individual("1101100100110110");
 		System.out.println(randFChrome.getName());
 		randFChrome.setMutation(m1);
+		randFChrome.mutate();
+		// randFChrome.setMutation(checkMutant.ISMUTANT);
 		randFChrome.mutate();
 		System.out.println(randFChrome.getName());
 	}
