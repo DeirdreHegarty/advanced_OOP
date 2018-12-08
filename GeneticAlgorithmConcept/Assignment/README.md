@@ -1,3 +1,19 @@
+---
+title:              CS613 Assignment 1
+author:             Deirdre Hegarty
+email:              deirdre.hegarty@mu.ie
+date:               December 2018
+
+toc:                yes
+fontsize:           11pt
+geometry:           margin=25mm
+linespacing:        1.15
+papersize:          A4
+link-citations:     true
+...
+
+\pagebreak
+
 ## Directory Structure
 
 ```bash
@@ -130,7 +146,7 @@ New Individual
 
 ```
 
-This demonstrates that Individual is a subclass fo Chromosome. Chromosome is an abstract class, and the base of a strategy pattern. Inside Chromosome behaviours such as mutate and crossover can be specified.
+This demonstrates that Individual is a subclass fo Chromosome. Chromosome is an abstract class, and the base of a strategy pattern [@hfstrategy]. Inside Chromosome behaviours such as mutate and crossover can be specified.
 
 ---
 
@@ -155,7 +171,7 @@ New Individual
 
 ```
 
-This demonstrates the use of a simple factory. IndividualGetter is a subclass of the abstract class ChromeFactory. Inside ChromeFactory is an abstract method `getChromeSubclass` that is accessable through `getChrome`.
+This demonstrates the use of a simple factory [@hfsimple]. IndividualGetter is a subclass of the abstract class ChromeFactory. Inside ChromeFactory is an abstract method `getChromeSubclass` that is accessable through `getChrome`.
 
 When an Individual is retrived using IndividualGetter, name (encoding) is the same as the arguement passes by getChrome. When mutate is called, the name of the Individual object is modified and saved back to the object.
 
@@ -179,7 +195,11 @@ Chromosome [] i = {chromosome1, chromosome2};
 Population pop = new Population(i);
 Selection s = bigFactory.createSelectGA(checkFitness.BIGGEST);
 pop.setSelection(s);
-pop.select();
+Chromosome [] selected = pop.select();
+for (int j = 0; j<2; j++){
+	System.out.println("POPULATION SELECTED ["+j+"]"+selected[j].getName());
+}
+
 
 Couple c1 = new Couple(chromosome1, chromosome2);
 c1.crossover();
@@ -192,7 +212,9 @@ New Chromosome created
 New Individual
 1101100100110110
 I am NOT a mutant
-1101000100110110
+1101100100100110
+POPULATION SELECTED [0]1101111000011110
+POPULATION SELECTED [1]1101100100110110
 New Chromosome created
 New Individual
 New Chromosome created
@@ -202,7 +224,7 @@ Offspring 1 : 1101100100110110
 
 ```
 
-This demonstrates abstract factory pattern.   
+This demonstrates abstract factory pattern [@hfabsfact]. 
 
 I could have made BigGAFactory into a singleton, but did not for the purposes of demonstrating different design patterns. Inside BigGAFactory behaviours for mutation and selection can be decided and saved into their respective Mutate and Selection type variables. These variables can then be passed the strategy pattern(s), where they are set to the behaviours of their respective object(s).  
 
@@ -220,8 +242,6 @@ Chromosome randFChrome = new Individual("1101100100110110");
 System.out.println(randFChrome.getName());
 randFChrome.setMutation(m1);
 randFChrome.mutate();
-// randFChrome.setMutation(checkMutant.ISMUTANT);
-randFChrome.mutate();
 System.out.println(randFChrome.getName());
 
 ```
@@ -237,4 +257,22 @@ New Individual
 
 ```
 
-This demonstrates abstract factory as a singleton.
+This demonstrates abstract factory as a singleton.  
+
+[@singleton]
+
+**Lazy initialization with Double check locking:** In this mechanism, we overcome the overhead problem of synchronized code. In this method, getInstance is not synchronized but the block which creates instance is synchronized so that minimum number of threads have to wait and that’s only for first time.
+
+**Pros:**
+
+* Lazy initialization is possible.
+* It is also thread safe.
+* Performance reduced because of synchronized keyword is overcome.
+
+**Cons:**
+
+* First time, it can affect performance.
+
+\pagebreak
+
+## References

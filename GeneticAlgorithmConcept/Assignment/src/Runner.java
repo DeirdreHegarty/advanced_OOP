@@ -58,8 +58,6 @@ class Runner{
 		System.out.println(randFChrome.getName());
 		randFChrome.setMutation(m1);
 		randFChrome.mutate();
-		// randFChrome.setMutation(checkMutant.ISMUTANT);
-		randFChrome.mutate();
 		System.out.println(randFChrome.getName());
 	}
 }
