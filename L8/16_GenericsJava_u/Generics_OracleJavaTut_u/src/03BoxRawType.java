@@ -16,7 +16,7 @@ class Test{
 	public static void main(String[] args){
 		Box rawTypeBox = new Box();								//"raw type" instantiation
 		System.out.println("adding 4 to rawTypeBox");
-		rawTypeBox.set(4);									//!compile warning! see with -XLint:unchecked
+		// rawTypeBox.set(4);									//!compile warning! see with -XLint:unchecked
 		//Integer i = rawTypeBox.get();							//!compile-error! explicit cast required for rawTypeBox 
 		System.out.println("contents: " + rawTypeBox.get() );	
 		

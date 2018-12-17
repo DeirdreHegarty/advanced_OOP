@@ -18,7 +18,7 @@ class Test{
 		Box box = new Box();
 		System.out.println("adding 4 to box");
 		box.set(4);								//avail of auto-boxing (as of Java 5)
-		//Integer i = box.get();							//no-compile assignment needs explicit cast
+		Integer i = (Integer)box.get();							//no-compile assignment needs explicit cast
 		System.out.println("contents: " + box.get() );
 		
 		System.out.println("adding \"text\" to box");
@@ -30,9 +30,6 @@ class Test{
 		box.set( new Blob(47) );
 		//Blob b = box.get();								//no-compile assignment needs explicit cast
 		System.out.println("contents: " + box.get() );
-		
-		
-		
-		
+				
 	}
 }
