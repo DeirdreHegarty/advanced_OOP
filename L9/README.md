@@ -24,7 +24,7 @@ std::cout << d4->getName() << std::endl;
 
 `&` declares a reference to something. In `main.cpp` the line `Dog *dref = &d5;` will save the reference to the dog object d5 into the pointer dref. In order to dereference like in the above example, the following can be done.
 
-``c++
+```c++
 
 Dog *dref = &d5;
 std::cout << &d5 << std::endl;
