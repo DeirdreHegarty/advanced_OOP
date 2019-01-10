@@ -515,7 +515,7 @@ java:
 * Generics work the other way around: the type parameters are used by the compiler to verify that the code using them is type-safe, but the resulting code is generated without types at all.
 * a simple run-time type substitution mechanism. 
 * Java does not allow the use of primitive type arguments in generics.
-* `https://repl.it/@DeirdreHegarty/IdolizedMellowIntelligence`  
+* `https://repl.it/@DeirdreHegarty/Generics`  
 
 ```cpp
 class Main {
