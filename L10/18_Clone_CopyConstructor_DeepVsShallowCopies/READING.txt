@@ -1,0 +1,24 @@
+[Note: The dates of the resources below were checked as of: Sat 05/Dec/2015 ]
+
+//	Java7 documentation on Cloneable interface
+https://docs.oracle.com/javase/7/docs/api/java/lang/Cloneable.html
+
+// Blog describing Josh Bloch's view on cloning in Java as of 2002.
+http://www.artima.com/intv/bloch13.html
+
+//Bruce Eckel on cloning options as of 2001
+http://www.codeguru.com/java/tij/tij0128.shtml
+
+//StackOverflow discussion on how to make a deep-copy in Java
+// NOTE: see reference to "kryo" tool 
+http://stackoverflow.com/questions/64036/how-do-you-make-a-deep-copy-of-an-object-in-java		//DateOfLatestDiscussionPost: Sep 15 2008 
+https://github.com/EsotericSoftware/kryo#copyingcloning											//DateOfLatestDiscussionPost: Nov 10, 2012
+
+
+//If you're really interested- here are some more useful discussions
+
+http://stackoverflow.com/questions/78536/deep-cloning-objects?rq=1								//DateOfLatestDiscussionPost: Aug 31 2014
+http://stackoverflow.com/questions/665860/deep-clone-utility-recomendation					   	//DateOfLatestDiscussionPost: Aug 6 2009 
+http://www.javacodegeeks.com/2014/01/which-is-better-option-cloning-or-copy-constructors.html	//DateOfPublication: 		  Jan 30, 2014
+http://howtodoinjava.com/2012/11/10/cloneable-interface-is-broken-in-java/						//DateOfPublication:		  Nov 10, 2012
+http://www.javaworld.com/article/2077578/learn-java/java-tip-76--an-alternative-to-the-deep-copy-technique.html		//DateOfPublication: Aug 6, 1999
