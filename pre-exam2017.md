@@ -348,6 +348,152 @@ public class Person {
 
 ## Both the Java and C++ collection classes similar data-structures. Choose any two and compare how you write the code in each language. (E.g. operation1 {Java versus C++}, operation2 {Java versus C++}).
 
+* Hashtable
+* Set
+
+#### Hashtable (Java)
+
+* It is similar to HashMap, but is synchronised.
+* `void clear()` : method clears the hashtable so that it contains no keys.
+* `Object clone()` :  for shallow copy of hashtable
+* Has iterator
+* `https://repl.it/@DeirdreHegarty/HashTable`
+
+```java
+// https://www.geeksforgeeks.org/hashtable-in-java/
+import java.util.*; 
+class Main { 
+    public static void main(String[] arg) 
+    { 
+        // creating a hash table 
+        Hashtable h = new Hashtable(); 
+        Hashtable h1 = new Hashtable(); 
+
+        h.put(3, "three"); 
+        h.put(2, "two"); 
+        h.put(1, "one"); 
+  
+        // create a clone or shallow copy of hash table h 
+        h1 = (Hashtable)h.clone(); 
+
+        // checking clone h1 
+        System.out.println("clone: " + h1); 
+
+        h1.replace(3, "THREE");
+        System.out.println(h1);
+
+        // clear hash table h 
+        h.clear(); 
+  
+        // checking hash table h 
+        System.out.println("clear: " + h); 
+    } 
+} 
+```
+
+#### Hashtable (C++)
+
+* `https://repl.it/@DeirdreHegarty/HashtableUnorderedMap`
+
+```cpp
+#include <iostream>
+#include <unordered_map>
+#include <string>
+ 
+int main()
+{
+  // Create an empty unordered_map
+  std::unordered_map<int, std::string> wordMap;
+ 
+  // Insert Few elements in map
+  wordMap.insert( { 1,"First" });
+  wordMap.insert( { 2, "Second" });
+  wordMap.insert( { 3, "Third" });
+ 
+  // Overwrite value of an element
+  wordMap[3] = "THREE";
+ 
+  std::cout << &wordMap << std::endl;
+  // std::cout << wordMap << std::endl; // doesn't work
+
+  // Iterate Over the unordered_map and display elements
+  for (std::pair<int, std::string> element : wordMap)
+    std::cout << element.first << " :: " << element.second << std::endl;
+  
+  wordMap.clear();
+  
+  return 0;
+}
+```
+
+#### Set (Java)
+
+* Cannot contain duplicate elements.
+* Need to cast
+* `https://repl.it/@DeirdreHegarty/Set`
+
+```java
+// https://www.tutorialspoint.com/java/java_set_interface.htm
+import java.util.*;
+public class Main {
+
+  public static void main(String args[]) { 
+      int count[] = {34, 22,10,60,30,22};
+      Set<Integer> set = new HashSet<Integer>();
+      try {
+         for(int i = 0; i < 5; i++) {
+            set.add(count[i]);
+         }
+         System.out.println(set);
+
+         TreeSet sortedSet = new TreeSet<Integer>(set);
+         System.out.println("The sorted list is:");
+         System.out.println(sortedSet);
+
+         System.out.println("The First element of the set is: "+ (Integer)sortedSet.first());
+         System.out.println("The last element of the set is: "+ (Integer)sortedSet.last());
+      }
+      catch(Exception e) {}
+   }
+} 
+```
+
+
+#### Set (C++)
+
+* cannot modify the elements using iterators
+* if you modify the element value then internal data structure of std::set will get corrupt and it will not remain balanced binary search tree.
+* 
+* `https://repl.it/@DeirdreHegarty/SetC`
+
+```cpp
+#include<iostream>
+#include<set>
+#include<string>
+int main()
+{
+  std::set<std::string> setOfNumbers;
+ 
+  // Insert elements
+  // they are sorted -> first second third
+  setOfNumbers.insert("first");
+  setOfNumbers.insert("second");
+  setOfNumbers.insert("third");
+  setOfNumbers.insert("third");
+  setOfNumbers.insert("first");
+  setOfNumbers.insert("first");
+ 
+  // Only 3 elements will be inserted
+  std::cout << "Set Size = " << setOfNumbers.size() << std::endl;
+ 
+  // Iterate through all the elements in a set and display the value.
+  for (std::set <std::string> :: iterator it=setOfNumbers.begin(); it!=setOfNumbers.end(); ++it)
+      std::cout << ' ' << *it;
+  std::cout<<"\n";
+  return 0;
+}
+``` 
+
 ---
 
 ## Give an example that explains how the use of the clone() method in Java can result in a shallow copy of an object. Compare the Java and C++ languages in this respect.
