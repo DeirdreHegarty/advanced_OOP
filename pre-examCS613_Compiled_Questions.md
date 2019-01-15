@@ -13,13 +13,30 @@
 
 ```
 
+* `https://repl.it/@DeirdreHegarty/Violin`
+
 **2016_Q1**(a) If a subclass defines the same method as a superclass (i.e. with
 		exactly the same method signature) – what is this typically
 		referred to as?  
 
+This is `method overriding`.
+* The argument list should be exactly the same as that of the overridden method.
+* The return type should be the same or a subtype of the return type declared in the original overridden method in the super class.
+* In Java, a method signature is part of the method declaration. It's the combination of the method name and the parameter list.
+
+If two methods of a class (whether both declared in the same class, or both inherited by a class, or one declared and one inherited) have the same name but signatures that are not override-equivalent, then the method name is said to be overloaded.  
+
 **2016_Q1**(b) Define a subclass called ClassicViolin that has a method
 		called play(). Write that method to re-use the code in the
 		Violin superclass and then add its own specialized code.   
+```java
+class ClassicViolin extends Violin{
+  void play(){
+	  super.play();
+	  System.out.println("play classically");
+  }
+}
+```
  
 **2016_Q1**(c) Suppose there is a class called ElectricViolin that is a
 		subclass of the Violin class above:    
@@ -36,27 +53,88 @@ v.tune();
 **2016_Q1**(c)(i) What would be the result of trying to compile and execute
 		these statements? Explain your answer.  
 
+`error: cannot find symbol e1.tune();` - This is because v is a Violin type object that is trying to access methods inside an ElectricViolin type. `tune()` is not part of the Violin type and therefore cannot be referenced.
+
 **2016_Q1**(c)(ii) Write example-code showing how instanceof could be
 		used to call the tune() method in this case. Explain the
 		code.  
 
+The java instanceof operator is used to test whether the object is an instance of the specified type (class or subclass or interface).
+```java
+final void tune(){
+	if (this instanceof ElectricViolin){
+	  System.out.println("tune ElectricViolin");
+	}else if (this instanceof ClassicViolin){
+	   System.out.println("tune ClassicViolin");
+	}
+	System.out.println("tune violin");
+}
+```
+
 **2016_Q1**(c)(iii)What is the Liskov Substitution Principle? State whether
-		using instanceof supports or violates this principle.  
+		using instanceof supports or violates this principle. 
+
+*Liskov Substitution Principle:* Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.  
 
 
 **2016_Q1**(d) Suppose there was a requirement that tune()should work the
 		same for all subclasses but each subclass should implement
 		display()differently.  
 
+
 **2016_Q1**(d)(i) Write example code showing how this could be achieved
 		with maximum code re-use.  
+
+```java
+class Violin{
+  void play(){
+  System.out.println("play normal");
+  }
+  final void tune(){
+  System.out.println("tune violin");
+  }
+  String display(){
+    return "Display violin";
+  }
+}
+class ClassicViolin extends Violin{
+  void play(){
+    super.play();
+    System.out.println("play classically");
+  }
+   String display(){
+    return "Display ClassicViolin";
+    }
+}
+class ElectricViolin extends Violin{
+  void play(){
+    super.play();
+    System.out.println("play electrically");
+  }
+  String display(){
+    return "Display ElectricVoilin";
+  }
+}
+```
 
 **2016_Q1**(d)(ii) Write a polymorphic method that could accept any
 		subclass of Violin and call tune() and display().  
 
+```java
+  static void polyMethod(Violin v){
+    v.tune();
+    System.out.println(v.display());
+  }
+```
+
 **2016_Q1**(d)(iii) What would be the effect of defining tune()to be final
 		in this case?  
 
+Final methods can not be overridden : If we don’t want a method to be overridden, we declare it as final.  
+
+During inheritance, we must declare methods with final keyword for which we required to follow the same implementation throughout all the derived classes. Note that it is not necessary to declare final methods in the initial stage of inheritance(base class always). We can declare final method in any subclass for which we want that if any other class extends this subclass, then it must follow same implementation of the method as in the that subclass.
+
+---
 
 **2017_Q1**
 
@@ -87,12 +165,28 @@ class Politician extends Person{
 }
 
 ```
+**2017_Q1**(a)(i)  
+`Person p = new Person( new Brain() );` - `Person` is abstract. This means that the class cannot be instantiated. It can however be subclasses. Also, passing `new Brain()` as a argument in the client code is not good practice.
 
+
+**2017_Q1**(a)(ii) 
+The constructor for Policician does not accept `Brain` as a parameter. This will cause an error as compile time. 
 
 **2017_Q1**(b)Could the above abstract class definition for Person be used to
 		implement a composition relationship between the classes
 		Person and Brain? Explain using code samples.  
 
+Java composition is achieved by using instance variables that refers to other objects. For example, a Person has a Brain. Composition in java is the design technique to implement has-a relationship in classes. We can use java inheritance or Object composition in java for code reuse.  
+
+```java
+class Person{
+  private Brain brain;
+  Person(){
+  System.out.print("Person has a ");
+  brain = new Brain();
+  }
+}
+```
 
 **2017_Q1**(c) Give an example of a factory method design pattern (any
 		example of your choosing) and ...   
@@ -124,20 +218,36 @@ is error-free and that the import is needed:
 
 **2018_Q1**(a) What can you determine about the class Fiddle (not shown):
 
+* Fiddle is in the package instruments
+* Fiddle is public
+* Fiddle is a superclass
+
 **2018_Q1**(a)(i) 
 		Identify a member of the class Fiddle, and briefly
-		explain how you know this member exists.    
+		explain how you know this member exists.  
+
+```java
+  public void playSweetly(){
+    play(); //<- memeber of Fiddle
+  }
+```
+
+This shows that `play()` is a memebr of Fiddle. `super.play();` 
 
 **2018_Q1**(a)(ii) 
 		State the access modifier that the member must have,
 		and say how you know this to be the case.    
+
+This must `public` because it is in a different package and a subclass can access meaning it is not `protected`.
 
 **2018_Q1**(b)
 		Could the following class declaration be valid for Fiddle?  
 		```java
 		 class Fiddle{ …
 		 ```
-		(You can assume it would be within a file called Fiddle.java).    
+		(You can assume it would be within a file called Fiddle.java).  
+
+No, it needs to be `public class Fiddle{ ...`. When a class is declared with the public keyword, it means this class is accessible and visible to all the classes in all the packages in Java. Out of all the other access modifiers, public access modifier gives the class a maximum visiblity to a class.  
 
 **2018_Q1**(c) Assume the following code, and only the following code,exists in
 		a file called Runner.java:  
@@ -155,14 +265,28 @@ is error-free and that the import is needed:
 
 
 **2018_Q1**(c)(i) Would the class Runner compile? State why/why-not?
+
+No:
+
+* ClassicFiddle may not exist
+* ClassicFiddle is on another package, which has not been imported.
+
 **2018_Q1**(c)(ii) If you were not allowed to add code to the class
 		Runner, but could change ClassicFiddle - state
 		how you could get this to compile, and explain how it
 		would work.  
 
+* add import for packages classic and instruments
+* remove ClassicFiddle from package classic (so runner cam access is)
+* make ClassicFiddle public
+* make Fiddle public and remove from its package
+
 **2018_Q1**(c)(iii) If you could only change the code in the class Runner –
 		state how you could get this to compile and explain how it
 		would work.  
+
+* import classic package
+* import instrument package
 
 **2018_Q1**(c)(iv) Given that the following package structure is required:  
 
@@ -174,6 +298,7 @@ is error-free and that the import is needed:
 		compile and execute without error. (Note: You can use
 		empty method bodies but include all necessary accessmodifiers; 
 		no explanation is required.)    
+`https://repl.it/@DeirdreHegarty/Violin`
 
 ## Question 2
 
