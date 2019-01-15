@@ -222,6 +222,8 @@ class D : public B, public C {};
 
 ```
 
+Java 8 introduces default methods on interfaces. If A,B,C are interfaces, B,C can each provide a different implementation to an abstract method of A, causing the diamond problem. Either class D must reimplement the method (the body of which can simply forward the call to one of the super implementations), or the ambiguity will be rejected as a compile error. Prior to Java 8, Java was not subject to the Diamond problem risk because it did not support multiple inheritance.
+
 ---
 
 ## Write a definition for the function start() of class RaceCar such that it re-uses the code in the start()function of class Car (i.e. its base-class).
@@ -457,7 +459,6 @@ public class Main {
    }
 } 
 ```
-
 
 #### Set (C++)
 
