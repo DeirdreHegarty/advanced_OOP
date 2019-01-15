@@ -195,10 +195,75 @@ class Person{
 
 **2017_Q1**(c)(ii)  provide a full sample-code.   
 
-**2017_Q1**(c)(iii) explain the role of polymorphism in the pattern.   
+`https://github.com/DeirdreHegarty/advanced_OOP/blob/master/L5/Factory_Patterns.md#factory-method`   
+
+Factory Method:  
+
+* Defines an interface for creating objects, but let subclasses to decide which class to instantiate
+* Refers the newly created object through a common interface.
+
+> The Factory Method Pattern defines an interface for creating an object, 
+> but lets subclasses decide which class to instantiate. 
+> 
+> Factory Method lets a class defer instantiation to subclasses.
+
+```java
+
+class Main {
+  public static void main(String[] args) {
+    PizzaGetter pg = new DeluxePizzaGetter();
+    Pizza p = pg.getPizza();
+    System.out.println(p);
+ }
+}
+
+// Factory Method Pattern
+abstract class PizzaGetter{
+  Pizza getPizza(){
+    return subclassMakePizza();//abs below 
+  }
+  // factory method
+  abstract Pizza subclassMakePizza(); // <---- factory method
+}
+
+class DeluxePizzaGetter extends PizzaGetter{
+  Pizza subclassMakePizza(){		  // <---- factory method
+    return new DeluxeCheese();
+  }
+}
+
+class Pizza{
+  String toppings;
+}
+
+class CheesePizza extends Pizza{
+  CheesePizza(){
+    toppings = "cheese";
+  }
+}
+
+class DeluxeCheese extends CheesePizza{
+  DeluxeCheese(){
+    toppings = " lots of cheese!";
+  }
+}
+
+//  returns:
+//  DeluxeCheese@001
+
+```
+
+
+**2017_Q1**(c)(iii) explain the role of polymorphism in the pattern. 
+
+With Factory Method you are creating a framework that let’s the subclasses decide which implementation will be used.
+
+For example, the subclassMakePizza() method in the Factory Method provides a general framework for creating pizzas that relies on a factory method to actually create the concrete classes that go into making a pizza. By subclassing the DeluxaPizzaGetter class, you decide what concrete products go into making the pizza that subclassMakePizza() returns.   
 
 **2017_Q1**(c)(iv)  state and explain whether an abstract class or interface
 				(or either) is needed to implement the pattern. 
+
+Either an abstract class or interface may be used. Reasons above.
 
 **2018_Q1**
 Assuming the following declaration for a class ClassicFiddle
@@ -238,7 +303,7 @@ This shows that `play()` is a memebr of Fiddle. `super.play();`
 		State the access modifier that the member must have,
 		and say how you know this to be the case.    
 
-This must `public` because it is in a different package and a subclass can access meaning it is not `protected`.
+This must be `public` because it is in a different package and a subclass can access meaning it is not `protected`.
 
 **2018_Q1**(b)
 		Could the following class declaration be valid for Fiddle?  
