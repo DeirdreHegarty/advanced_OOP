@@ -387,14 +387,97 @@ No:
 **2018_Q2**(b) Give an example (in code or UML) of a singleton design pattern.
 		(i) Briefly identify what the pattern is intended to achieve.  
 
+Intention:  
+* Ensure that only one instance of a class is created.
+* Provide a global point of access to the object.
+
+The singleton pattern is one of the simplest design patterns: it involves only one class which is responsible to instantiate itself, to make sure it creates not more than one instance; in the same time it provides a global point of access to that instance. In this case the same instance can be used from everywhere, being impossible to invoke directly the constructor each time.  
+
+OPTION 2 in `https://github.com/DeirdreHegarty/advanced_OOP/blob/master/L4/L4.md`  
+
+```java
+// THREADSAFE (synchronized)
+public class Singleton {
+
+    private static volatile Singleton instance = null; 	// 1
+
+    private Singleton() {} 								// 4
+
+    public static Singleton getInstance() { 			// 2
+        if (instance == null) {
+            synchronized(Singleton.class) {
+                if (instance == null) {
+                    instance = new Singleton(); 		// 3
+                }
+            }
+        }
+
+        return instance;
+    }
+}
+```
+
 		(ii) Outline five characteristics you would expect to see in
 		code for a singleton-pattern implementation (i.e. about the
 		constructor, a method you’d expect to see… etc.).  
 
+* Make constructor as private.
+* Write a static method that has return type object of this singleton class. 
+
+1) Define a private static attribute in the "single instance" class.
+2) Define a public static accessor function in the class.
+3) Do "lazy initialization" (creation on first use) in the accessor function.
+4) Define all constructors to be protected or private.
+5) Clients may only use the accessor function to manipulate the Singleton.
+
+
 		(iii) State and briefly explain why a programmer might need to
 		be careful when implementing a singleton in a multithreaded 
-		environment.  
+		environment. 
+		
+* bottleneck
+* allowing access simultaneously before a thread is finished
 
+The following is NOT thread safe:
+
+```java
+public class Singleton {
+    private static Singleton _instance = null;
+     
+    private Singleton() {}
+     
+    public static Singleton getInstance() {
+        if (_instance == null) {
+            _instance = new Singleton();
+        }
+         
+        return _instance;
+    }
+}
+```
+1) Thread-1 enters getInstance() for the first time and sees that _instance is null and thus the condition is true.
+2) Before instantiating the object a thread switch occur.
+3) Thread-2 enters getInstance() and it will see _instance null too, as the instantiation by Thread-1 is not completed yet.
+4) Thread-2 instantiate new object and then return.
+5) Thread-1 knows nothing about Thread-2. So when it gets its turn again, it instantiates another object and returns that. At this point we have two instances of Singleton which violates the fundamental purpose of the pattern.
+
+Also, the following would cause a bottleneck - method is synchronized so it causes slow performance as multiple threads can’t access it simultaneously:  
+
+```java
+public class Singleton {
+    private static Singleton _instance = null;
+     
+    private Singleton() {}
+	synchronized public static Singleton getInstance(){
+		System.out.println("SYNCHRONIZED METHOD");
+		if(_real == null)
+		{
+			_real = new new Singleton(); 
+		}	
+		return _real; //return instance that already has been set
+	}
+}
+```
 
 **2017_Q2**
 
@@ -444,10 +527,10 @@ The Strategy Pattern.
 		the terms “call-back”, “push” and “pull”. Give brief code
 		examples and explain.  
 
-**call-back : ** CallBack Function is a function which passed into another function as an argument and is expected to execute after some kind of event. The purpose of the callback is to inform a class Sync/Async if some work in other class is done. This is very useful when working with Asynchronous tasks. Suppose we want to perform some routine tasks like perform some operation or display content after some clicking a button, or fetching data from internet. This is also used in event handling, as we get notified when a button clicked via callback function.  
+**call-back :** CallBack Function is a function which passed into another function as an argument and is expected to execute after some kind of event. The purpose of the callback is to inform a class Sync/Async if some work in other class is done. This is very useful when working with Asynchronous tasks. Suppose we want to perform some routine tasks like perform some operation or display content after some clicking a button, or fetching data from internet. This is also used in event handling, as we get notified when a button clicked via callback function.  
 
-**push : **
-**pull : **
+**push :**
+**pull :**
 
 **2017_Q2**(c) Briefly explain what is meant by the “open/closed” principle.
 		Explain the principle with respect to your answer to the pattern
