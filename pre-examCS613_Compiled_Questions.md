@@ -384,6 +384,69 @@ No:
 		briefly discuss the difference in intent and applicability of 
 		the two patterns.  
 
+The Abstract Factory Pattern provides an interface for creating families of related or dependent objects without specifying their concrete classes. It is a class delegates the responsibility of object instantiation to another object via composition. What they're saying is that there is an object A, who wants to make a Foo object. Instead of making the Foo object itself (e.g., with a factory method), it's going to get a different object (the abstract factory) to create the Foo object.    
+ 
+The Factory Method pattern uses inheritance and relies on a subclass to handle the desired object instantiation.  
+
+Abstract Factory:  
+* `https://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm`
+* an object
+* has multiple factory methods on it
+* Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
+
+
+Factory Method:  
+* a single method
+* can be overridden in a subclass
+*  Defines an interface for creating objects, but let subclasses to decide which class to instantiate
+* Refers the newly created object through a common interface.
+
+```java
+class Main {
+  public static void main(String[] args) {
+    PizzaGetter pg = new DeluxePizzaGetter();
+    Pizza p = pg.getPizza();
+    System.out.println(p);
+ }
+}
+
+// Factory Method Pattern
+abstract class PizzaGetter{
+  Pizza getPizza(){
+    return subclassMakePizza();//abs below 
+  }
+  // factory method
+  abstract Pizza subclassMakePizza(); // <---- factory method
+}
+
+class DeluxePizzaGetter extends PizzaGetter{
+  Pizza subclassMakePizza(){		  // <---- factory method
+    return new DeluxeCheese();
+  }
+}
+
+class Pizza{
+  String toppings;
+}
+
+class CheesePizza extends Pizza{
+  CheesePizza(){
+    toppings = "cheese";
+  }
+}
+
+class DeluxeCheese extends CheesePizza{
+  DeluxeCheese(){
+    toppings = " lots of cheese!";
+  }
+}
+
+//  returns:
+//  DeluxeCheese@001
+
+```
+
+
 **2018_Q2**(b) Give an example (in code or UML) of a singleton design pattern.
 		(i) Briefly identify what the pattern is intended to achieve.  
 
@@ -399,7 +462,7 @@ OPTION 2 in `https://github.com/DeirdreHegarty/advanced_OOP/blob/master/L4/L4.md
 // THREADSAFE (synchronized)
 public class Singleton {
 
-    private static volatile Singleton instance = null; 	// 1
+    private static Singleton instance; 					// 1
 
     private Singleton() {} 								// 4
 
@@ -434,7 +497,7 @@ public class Singleton {
 		(iii) State and briefly explain why a programmer might need to
 		be careful when implementing a singleton in a multithreaded 
 		environment. 
-		
+
 * bottleneck
 * allowing access simultaneously before a thread is finished
 
@@ -521,7 +584,14 @@ public class Singleton {
 **2017_Q2**(a) Clearly state the common name for a design pattern you have
 		studied which would be suitable for the above requirements.   
 
-The Strategy Pattern.
+The Strategy Pattern. The Strategy Pattern defines a family of algorithms, encapsulates each one, and makes them interchangeable. Strategy lets the algorithm vary independently from clients that use it.  
+
+* the client usually specifies the strategy object that the context is composed with 
+* while the pattern provides the flexibility to change the strategy object at runtime, often there is a strategy object that is most appropriate for a context object 
+* Strategy Pattern is a flexible alternative to subclassing 
+* With Strategy you can change the behavior by composing with a different object - not possible if inheritance is used to define the behavior of a class
+* **Subclasses decide how to implement steps in an algorithm**
+* Take what varies and “encapsulate” it so it won’t affect the rest of your code.
 
 **2017_Q2**(b) With respect to Object Oriented programming - what is meant by
 		the terms “call-back”, “push” and “pull”. Give brief code
