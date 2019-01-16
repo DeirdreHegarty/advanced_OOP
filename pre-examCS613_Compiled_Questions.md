@@ -365,6 +365,8 @@ No:
 		no explanation is required.)    
 `https://repl.it/@DeirdreHegarty/Violin`
 
+---
+
 ## Question 2
 
 **2018_Q2**(a) Give an example (in code or UML) of an abstract-factory design
@@ -436,15 +438,30 @@ No:
 **2017_Q2**(a) Clearly state the common name for a design pattern you have
 		studied which would be suitable for the above requirements.   
 
+The Strategy Pattern.
+
 **2017_Q2**(b) With respect to Object Oriented programming - what is meant by
 		the terms “call-back”, “push” and “pull”. Give brief code
 		examples and explain.  
+
+**call-back : ** CallBack Function is a function which passed into another function as an argument and is expected to execute after some kind of event. The purpose of the callback is to inform a class Sync/Async if some work in other class is done. This is very useful when working with Asynchronous tasks. Suppose we want to perform some routine tasks like perform some operation or display content after some clicking a button, or fetching data from internet. This is also used in event handling, as we get notified when a button clicked via callback function.  
+
+**push : **
+**pull : **
 
 **2017_Q2**(c) Briefly explain what is meant by the “open/closed” principle.
 		Explain the principle with respect to your answer to the pattern
 		you identified in part (a) of this question if possible.
 		(Alternatively – refer to any design pattern which you feel
 		adheres to the principle).  
+
+Open/Close principle = we should strive to write code that doesn’t have to be changed every time the requirements change. Software entities should be open to extension but closed to modification.   
+
+* Open to Extension
+* But Closed for Modification
+* Via the strategy pattern, you encapsulate some specific strategies and select which one to use at runtime according to some criteria. So, by definition, using this pattern makes your code open to extension.
+
+When we say closed for modification, it means new changes should be implemented by the new code, rather than altering existing code. This reduces the possibility of breaking existing tried and tested code.  
 
 **2017_Q2**(d) Give a step-by-step re-design of the above code sample, such
 		that the resulting code satisfies the above requirements. Clearly
@@ -477,9 +494,13 @@ class PaleAle extends Beer{
 
 ```
  
-**2016_Q2**(a)(i) Identify all compile errors in the code above.  
+**2016_Q2**(a)(i) Identify all compile errors in the code above. 
 
 **2016_Q2**(a)(ii) For each compile error, briefly explain what causes the error.  
+
+* Beer is not `public`
+* Missing `import beers.Beer;` in PaleAle
+* void taste() in PaleAle should be `private` or `public` - cannot assign weaker privileges 
 
 **2016_Q2**(b) Assuming all compile errors were fixed and the taste()
 		method in each class was protected – state if the following
@@ -496,6 +517,10 @@ class Runner{
 }
 
 ```
+
+No:
+* missing `import beers.Beer;`
+* `taste()` has protected access in Beer
 
 **2016_Q2**(c) Write a complete code example to demonstrate the Strategy
 		design pattern. Briefly explain all the components of this design
@@ -519,8 +544,39 @@ class Runner{
 		guaranteed to be always 20% greater than the price? Suggest
 		any changes you would make to improve the code.   
 
+Encapsulation is one of the four fundamental OOP concepts. The other three are inheritance, polymorphism, and abstraction.  
 
+Encapsulation in Java is a mechanism of wrapping the data (variables) and code acting on the data (methods) together as a single unit. In encapsulation, the variables of a class will be hidden from other classes, and can be accessed only through the methods of their current class. Therefore, it is also known as data hiding.  
 
+* Declare the variables of a class as private.
+* Provide public setter and getter methods to modify and view the variables values.  
+
+`double priceWithTax = price * 1.2;` is BAD! Because no setter, `getPriceIncludingTax()` will always return `0.0` as answer.  
+
+`int priceWithTax = price * 1.2;` - incompatible types: possible lossy conversionfrom double to int. This code will not compile.
+
+* change `int` to `double
+
+No, you cannot guarantee priceWithTax will always be 20% greater than the current price - it will always have the value `0.0`.  
+
+```java
+class Item{
+  private double price;
+  // will always return 0.0 as answer - BAD!
+  // DONT NEED THIS VARIABLE AT ALL
+  // double priceWithTax = price * 1.2;
+
+  public double getPriceIncludingTax(){
+    return price * 1.2;
+  }
+  public double getPrice(){
+    return price;
+  }
+  public void setPrice(double x){
+    price = x;
+  }
+}
+```
 
 ## Question 3 (and Q4 **2017**)
 
