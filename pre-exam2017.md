@@ -246,12 +246,14 @@ class RaceCar : public Car{
 #include <iostream>
 #include "Car.h"
 
+
 void Car :: start(){
 std::cout << "Starting Car" << std::endl; 
 }
-
 void RaceCar :: start(){
+Car::start();
 std::cout << "Starting RaceCar" << std::endl; 
+}
 }
 
 // main
